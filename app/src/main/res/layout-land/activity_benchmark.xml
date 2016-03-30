@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+<RelativeLayout
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="BENCHMARK IT..!!"
+        android:id="@+id/textView"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:textSize="30dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/size"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/textView"
+        android:hint="Enter Array Size"
+        android:inputType="number" />
+
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/size"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:id="@+id/complexity"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Best Case"
+            android:id="@+id/bestCase"
+            android:checked="false"
+            android:layout_gravity="center_horizontal"
+            android:textSize="15dp"
+            android:onClick="complexity"/>
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Avg Case"
+            android:id="@+id/avgCase"
+            android:checked="false"
+            android:layout_gravity="center_horizontal"
+            android:textSize="15dp"
+            android:onClick="complexity"/>
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Worst Case"
+            android:id="@+id/worstCase"
+            android:checked="false"
+            android:layout_gravity="center_horizontal"
+            android:textSize="15dp"
+            android:onClick="complexity"/>
+
+    </RadioGroup>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="GENERATE ARRAY"
+        android:id="@+id/genArray"
+        android:onClick="generateArray"
+        android:layout_below="@+id/complexity"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" Algorithm"
+        android:id="@+id/textView3"
+        android:textSize="20dp"
+        android:layout_below="@+id/genArray"
+        android:layout_alignLeft="@+id/complexity"
+        android:layout_alignStart="@+id/complexity" />
+
+
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Bubble Sort"
+        android:id="@+id/bubbleSort"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:checked="false"
+        android:textSize="20dp" />
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Selection Sort"
+        android:id="@+id/selectionSort"
+        android:layout_below="@+id/bubbleSort"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:checked="false"
+        android:textSize="20dp"
+        android:layout_marginTop="10dp" />
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Insertion Sort"
+        android:id="@+id/insertionSort"
+        android:layout_below="@+id/selectionSort"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:checked="false"
+        android:layout_marginTop="10dp"
+        android:textSize="20dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/bresult"
+        android:layout_alignBottom="@+id/bubbleSort"
+        android:layout_alignLeft="@+id/sresult"
+        android:layout_alignStart="@+id/sresult"
+        android:layout_alignRight="@+id/complexity"
+        android:layout_alignEnd="@+id/complexity" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/sresult"
+        android:layout_below="@+id/bubbleSort"
+        android:layout_alignLeft="@+id/iresult"
+        android:layout_alignStart="@+id/iresult"
+        android:layout_alignRight="@+id/complexity"
+        android:layout_alignEnd="@+id/complexity" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/iresult"
+        android:layout_below="@+id/sresult"
+        android:layout_toRightOf="@+id/genArray"
+        android:layout_alignRight="@+id/complexity"
+        android:layout_alignEnd="@+id/complexity" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="BENCHMARK"
+        android:id="@+id/benchMark"
+        android:layout_below="@+id/insertionSort"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="41dp"
+        android:onClick="benchMark"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Status"
+        android:id="@+id/textView2"
+        android:layout_above="@+id/bresult"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/genArray"
+        android:layout_alignLeft="@+id/bresult"
+        android:layout_alignStart="@+id/bresult"
+        android:textSize="20dp" />
+</RelativeLayout>
+    </LinearLayout>
+
+</ScrollView>

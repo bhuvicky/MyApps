@@ -3,7 +3,8 @@ package com.bhuvanesh.myapps;
 import android.app.ProgressDialog;
 import android.graphics.Color;
 import android.os.AsyncTask;
-
+import android.os.Handler;
+import android.util.Log;
 import static java.lang.System.currentTimeMillis;
 
 /**
@@ -14,10 +15,12 @@ public class BackgroundTask extends AsyncTask<int[], Integer, Long> {
     long startTime, endTime;
     BenchmarkActivity context;
     ProgressDialog progress;
-
+    int mProgressStatus = 0;
+    private Handler mHandler;
 
     public BackgroundTask(BenchmarkActivity context) {
-        this.context = context;
+        mHandler = new Handler();
+        this.context = context;;
     }
 
     @Override
@@ -25,34 +28,57 @@ public class BackgroundTask extends AsyncTask<int[], Integer, Long> {
         progress=new ProgressDialog(context);
         progress.setMessage("Sorting in progress....");
         progress.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
-        progress.setIndeterminate(true);
-        progress.setProgress(0);
+        progress.setMax(100);
         progress.show();
     }
 
     @Override
     protected Long doInBackground(int[]... params) {
-        startTime = currentTimeMillis();
-        publishProgress(0);
+        /*new Thread(new Runnable() {
+            public void run() {*/
+                while (mProgressStatus < 100) {
+                    mProgressStatus++;
+                    try {
+                        Thread.sleep(100);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    publishProgress(mProgressStatus);
+                }
+                    // Update the progress bar
+                    /*mHandler.post(new Runnable() {
+                        public void run() {
+                            progress.setProgress(mProgressStatus);
+                        }
+                    });
+                }
+            }
+        }).start();*/
+
+       /*startTime = currentTimeMillis();
         bubbleSort(params[0]);
-        publishProgress(30);
-        selectionSort(params[0]);
-        publishProgress(60);
-        insertionSort(params[0]);
-        publishProgress(100);
-        endTime = currentTimeMillis();
+        selectionSort(params[1]);
+        insertionSort(params[2]);
+        endTime = currentTimeMillis();*/
         return endTime - startTime;
     }
 
-    @Override
-    protected void onPostExecute(Long aLong) {
-        context.tvbubbleSortResult.setText("Bubble Sort finished in " +String.valueOf(aLong)+ "ms");
-    }
+
+
+        @Override
+        protected void onPostExecute(Long result) {
+        super.onPostExecute(result);
+        if (progress.isShowing())
+            progress.dismiss();
+        context.tvbubbleSortResult.setText("Sorting finished in " + String.valueOf(result) + "ms");
+        }
 
     @Override
     protected void onProgressUpdate(Integer... values) {
-       progress.setProgress(values[0]);
+        super.onProgressUpdate(values);
+        progress.setProgress(values[0]);
     }
+
 
     public static void swap(int[] array, int index1, int index2) {
         int temp = 0;

@@ -1,13 +1,16 @@
 package com.bhuvanesh.myapps;
 
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.graphics.Color;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -22,7 +25,7 @@ public class BenchmarkActivity extends AppCompatActivity implements Communicator
     private static int[] array;
     private static int arraySize;
     int flag;
-    ProgressDialog progress;
+    ProgressBar progress;
     EditText etArraySize;
     TextView tvArrayStatus;
     TextView tvbubbleSortResult, tvSelecitonSortResult, tvInsertionSortResult;
@@ -80,13 +83,16 @@ public class BenchmarkActivity extends AppCompatActivity implements Communicator
     @Override
     public void benchMark(ArrayList selectedAlgorithms) {
 
-        for (int i=0; i<selectedAlgorithms.size(); i++) {
-            switch (selectedAlgorithms.get(i).toString()) {
-                case "0": new BackgroundTask(this).execute(array.clone());    break;
-                case "1": new BackgroundTask(this).execute(array.clone());    break;
-                case "2": new BackgroundTask(this).execute(array.clone());    break;
+        /*for (int i=0; i<selectedAlgorithms.size(); i++) {*/
+            switch (selectedAlgorithms.size()/*selectedAlgorithms.get(i).toString()*/) {
+                case 1: new BackgroundTask(this).execute(array.clone());    break;
+                case 2: new BackgroundTask(this).execute(array.clone());    break;
+                case 3:
+                    Log.d("progress", "in case 3");
+                    new BackgroundTask(this).execute(array.clone(), array.clone(), array.clone());
+                    break;
             }
-        }
+
 
     }
 
